@@ -2635,7 +2635,8 @@ public class Settings {
                 String text;
                 InputStream in = new FileInputStream(cfgFile);
                 try {
-                    text = Interpreter.loadTdd(in, "ISO-8859-1");
+                    text = Interpreter.loadTdd(in, "UTF-8");
+                    // text = Interpreter.loadTdd(in, "ISO-8859-1");
                 } finally {
                     in.close();
                 }
@@ -2820,7 +2821,8 @@ public class Settings {
                 throw new SettingException(
                         "Invalid function: \"" + f.getName() + "\". "
                         + "Function should be one of: "
-                        + "\"header\", \"footer\", \"border\", \""                        + FUNCTION_LAYER + "\".");
+                        + "\"header\", \"footer\", \"border\", \""
+                        + FUNCTION_LAYER + "\".");
             }
             if (header != null || footer != null) {
                 layerUsed = true;
@@ -3107,7 +3109,9 @@ public class Settings {
                 if (!copy) {
                     throw new SettingException(
                             MSG_XML_RENDERING_OPT_ERROR
-                            + "The \"template\" option must be specified, "                            + "since the \"copy\" option is unspecified or "                            + "false.");
+                            + "The \"template\" option must be specified, "
+                            + "since the \"copy\" option is unspecified or "
+                            + "false.");
                 }
             } else {
                 if (copy) {
@@ -3191,7 +3195,10 @@ public class Settings {
                         if (!(o instanceof String)) {
                             throw new SettingException(
                                     MSG_XML_RENDERING_OPT_ERROR
-                                    + "The value of the "                                    + "\"ifDocumentElementIs\" "                                    + "option must be a sequence strings, but "                                    + "one of its items is a "
+                                    + "The value of the "
+                                    + "\"ifDocumentElementIs\" "
+                                    + "option must be a sequence strings, but "
+                                    + "one of its items is a "
                                     + Interpreter.getTypeName(o) + ".");
                         }
                         s = (String) o;
@@ -3205,9 +3212,11 @@ public class Settings {
                                 throw new SettingException(
                                         MSG_XML_RENDERING_OPT_ERROR
                                         + "The value of the "
-                                        + "\"ifDocumentElementIs\" option uses "                                        + "the " + StringUtil.jQuote(prefix)
+                                        + "\"ifDocumentElementIs\" option uses "
+                                        + "the " + StringUtil.jQuote(prefix)
                                         + " XML name-space prefix, but that "
-                                        + "prefix is not defined with the "                                        + "\"xmlns\" option.");
+                                        + "prefix is not defined with the "
+                                        + "\"xmlns\" option.");
                             }
                             if (!(o instanceof String)) {
                                 throw new SettingException(
@@ -3247,7 +3256,9 @@ public class Settings {
                         } catch (EvalError e) {
                             throw new SettingException(
                                     MSG_XML_RENDERING_OPT_ERROR
-                                    + "Failed to evaluate the value of "                                    + "\"localDataBulder\" as BeanShell "                                    + "script.",
+                                    + "Failed to evaluate the value of "
+                                    + "\"localDataBulder\" as BeanShell "
+                                    + "script.",
                                     e);
                         }
                         if (!(o instanceof LocalDataBuilder)) {
@@ -3262,7 +3273,8 @@ public class Settings {
                                         ? "doesn't implement "
                                                 + LocalDataBuilder.class
                                                         .getName()
-                                                + ". (The class of the "                                                + "object is: "
+                                                + ". (The class of the "
+                                                + "object is: "
                                                 + o.getClass().getName() + ")"
                                         : "is null."));
                         }
@@ -3309,7 +3321,8 @@ public class Settings {
                 xmlDependentOps = (XmlDependentOps) cl.newInstance();
             } catch (IllegalArgumentException e) {
                 throw new BugException(
-                        "Failed to instantiate "                        + "fmpp.setting.XmlDependentOpsImpl", e);
+                        "Failed to instantiate "
+                        + "fmpp.setting.XmlDependentOpsImpl", e);
             } catch (IllegalAccessException e) {
                 throw new BugException(
                         "Failed to instantiate "
